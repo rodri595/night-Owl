@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 
 import Page from "../../components/Page/Page";
-// import Header from "../../components/Header/Header";
 import Player from "../../components/player/Player";
 import AudioImport from "../../components/audioimport/AudioImport";
 import AudioMap from "../../components/audioMap/AudioMap";
@@ -10,45 +9,69 @@ import boop from "../../assets/audio/boop.mp3";
 import open from "../../assets/audio/open.mp3";
 import pops from "../../assets/audio/pops.mp3";
 import Footer from "../../components/Footer/Footer";
+import Data from "./data.json";
+import Data2 from "./data2.json";
+import CircleUser from "../../components/audioMap/CircleUser";
+import Darulez from "../../components/darulez/Darulez";
+import Rules from "../../components/rules/Rules";
 
 const LiveMap = () => {
   const [isDarkMode, setisDarkMode] = useState(true);
   const [isaudioImportOpen, setisaudioImportOpen] = useState(false);
+  const [isopenrulez, setisopenrulez] = useState(true);
+
+  //
+  const [isapidata, setisapidata] = useState([]);
+  const [isaudioClick, setisaudioClick] = useState([]);
+
   //
   const [iscity, setiscity] = useState("Planet");
   const [iscountry, setiscountry] = useState("Earth");
-  const [isaudioFile, setisaudioFile] = useState(pops);
-  const [issomething, setissomething] = useState("");
+  const [isaudioFile, setisaudioFile] = useState();
   const [isTitle, setisTitle] = useState("");
 
   useEffect(() => {
-    if (issomething === "HONDURAS") {
+    let intervalID;
+
+    intervalID = setInterval(() => {
+      handler();
+    }, 5000);
+    return () => clearInterval(intervalID);
+  }, [isapidata]);
+
+  useEffect(() => {
+    if (isaudioClick.trackFile === "quo") {
       setisaudioFile(quo);
-      setisTitle(
-        "Veridis Quo - Daft Punk 202101201328674327856 34hj43k543j kh435jh kg435 hjk45hj"
-      );
-      setiscity("Tegucigalpa");
-      setiscountry("Honduras");
     }
-    if (issomething === "FRANCE") {
+    if (isaudioClick.trackFile === "boop") {
       setisaudioFile(boop);
-      setisTitle("Boop Sound From Bob");
-      setiscity("Limoges");
-      setiscountry("France");
     }
-    if (issomething === "KYIV") {
+    if (isaudioClick.trackFile === "open") {
       setisaudioFile(open);
-      setisTitle("Open Ding From Kyiv");
-      setiscity("Kyiv");
-      setiscountry("Ukraine");
     }
-    if (issomething === "USA") {
+    if (isaudioClick.trackFile === "pops") {
       setisaudioFile(pops);
-      setisTitle("Popping Bottle From Florida");
-      setiscity("Lake Wales");
-      setiscountry("USA");
     }
-  }, [issomething]);
+
+    setisTitle(isaudioClick.audioTitle);
+    setiscity(isaudioClick.city);
+    setiscountry(isaudioClick.country);
+  }, [isaudioClick]);
+
+  const handler = () => {
+    if (isapidata.length === 0) {
+      setisapidata(Data);
+    } else {
+      if (!(isapidata.length === Data2.length)) {
+        Data2.filter((o, i) => {
+          if (isapidata[i] === undefined) {
+            o.new = true;
+          }
+        });
+        setisapidata(Data2);
+      }
+    }
+  };
 
   return (
     <Page isDarkMode={isDarkMode}>
@@ -63,10 +86,14 @@ const LiveMap = () => {
       <AudioMap
         cityHandler={setiscity}
         countryHandler={setiscountry}
-        setsomething={setissomething}
-      />
+        userAudios={isapidata}
+      >
+        <CircleUser data={isapidata} audioClick={setisaudioClick} />
+      </AudioMap>
       <AudioImport audioimportOpen={isaudioImportOpen} />
       <Footer />
+      <Darulez openrulez={isopenrulez} setopenrulez={setisopenrulez} />
+      <Rules openrulez={isopenrulez} />
     </Page>
   );
 };
