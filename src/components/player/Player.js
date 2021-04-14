@@ -10,6 +10,8 @@ const Player = ({
   countryName,
   audioimportOpen,
   audioimportOpenHandler,
+  openrulez,
+  setopenrulez,
 }) => {
   const [volumneLevel, setvolumneLevel] = useState(0.5);
   const [ismenuOpen, setismenuOpen] = useState(false);
@@ -34,6 +36,21 @@ const Player = ({
       return stop();
     }
   }, [voicenoteFile]);
+  useEffect(() => {
+    if (!ismenuOpen && audioimportOpen) {
+      audioimportOpenHandler(false);
+    }
+  }, [ismenuOpen]);
+  useEffect(() => {
+    if (audioimportOpen && openrulez) {
+      setopenrulez(false);
+    }
+  }, [audioimportOpen]);
+  useEffect(() => {
+    if (audioimportOpen && openrulez) {
+      audioimportOpenHandler(false);
+    }
+  }, [openrulez]);
 
   const playAudioHandler = () => {
     if (voicenoteFile === undefined) {
@@ -52,17 +69,6 @@ const Player = ({
     }
   };
 
-  // const uploadAudio = ({audioimportOpenHandler}) => {
-  //   Swal.fire({
-  //     icon: "success",
-  //     html: `<div class="voicenote-save">Voice Note Shared</div>`,
-  //     toast: true,
-  //     position: "top",
-  //     timer: 3000,
-  //     timerProgressBar: false,
-  //     showConfirmButton: false,
-  //   });
-  // };
   return (
     <div>
       {ismenuOpen ? (

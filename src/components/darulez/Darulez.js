@@ -9,7 +9,7 @@ const Darulez = ({ openrulez, setopenrulez }) => {
           openrulez ? "darulez-open-icon" : "darulez-close-icon"
         } media-icon"`}
       >
-        <span>{openrulez ? "📖" : "📘"}</span>
+        <span>👆</span>
       </div>
     </div>
   );

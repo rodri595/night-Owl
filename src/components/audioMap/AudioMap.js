@@ -13,8 +13,8 @@ const AudioMap = ({ cityHandler, countryHandler, children }) => {
     init();
   }, []);
 
-  const init = () => {
-    fetch("https://ipapi.co/json")
+  const init = async () => {
+    let response = await fetch("https://ipapi.co/json")
       .then((res) => res.json())
       .then((location) => {
         cityHandler(location.city);
@@ -22,10 +22,30 @@ const AudioMap = ({ cityHandler, countryHandler, children }) => {
         const { current = {} } = mapRef;
         const { leafletElement: map } = current;
 
-        map.flyTo([location.latitude, location.longitude], 8, {
-          duration: 3,
+        map.flyTo([location.latitude, location.longitude], 4, {
+          duration: 1,
         });
       });
+
+    if (response === undefined) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { current = {} } = mapRef;
+          const { leafletElement: map } = current;
+          map.flyTo([position.coords.latitude, position.coords.longitude], 8, {
+            duration: 4,
+          });
+        },
+        () => {
+          alert("ACTIVE GPS AND ALLOW TRACKING FOR MAP COORDS");
+        },
+        {
+          enableHighAccuracy: true,
+          timeout: 5000,
+          maximumAge: 0,
+        }
+      );
+    }
   };
 
   return (

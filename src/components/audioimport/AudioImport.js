@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Logo from "../../assets/img/logo.png";
 
 const AudioImport = ({ audioimportOpen }) => {
   return (
@@ -8,9 +9,26 @@ const AudioImport = ({ audioimportOpen }) => {
           padding: "10px",
         }}
       >
-        <div className="container text-center">
-          <div className="text-center" style={{}}>
-            <h4>Whats On your Mind?</h4>
+        <div className="container ">
+          <div
+            className="text-center"
+            style={{ transform: "translateY(-35px)" }}
+          >
+            <img
+              src={Logo}
+              style={{
+                height: "50px",
+              }}
+            />
+            <div
+              style={{
+                fontSize: "15px",
+                fontWeight: "bolder",
+                color: "#495fef",
+              }}
+            >
+              Whats on your mind?
+            </div>
           </div>
         </div>
       </div>

@@ -82,6 +82,8 @@ const LiveMap = () => {
         audioimportOpen={isaudioImportOpen}
         audioimportOpenHandler={setisaudioImportOpen}
         voicenoteFile={isaudioFile}
+        openrulez={isopenrulez}
+        setopenrulez={setisopenrulez}
       />
       <AudioMap
         cityHandler={setiscity}
@@ -93,7 +95,7 @@ const LiveMap = () => {
       <AudioImport audioimportOpen={isaudioImportOpen} />
       <Footer />
       <Darulez openrulez={isopenrulez} setopenrulez={setisopenrulez} />
-      <Rules openrulez={isopenrulez} />
+      <Rules setopenrulez={setisopenrulez} openrulez={isopenrulez} />
     </Page>
   );
 };
