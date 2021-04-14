@@ -4,12 +4,12 @@
         "new": false,
         "city": "Tegucigalpa",
         "country": "Honduras",
-        "audioTitle": "Veridis Quo - Daft Punk 20210313 42069",
+        "audioTitle": "My Name is Giovani Giorgio",
         "coords": [
             14.099284922844143,
             -87.14355468750001
         ],
-        "trackFile": "quo"
+        "trackFile": "giorgio"
     },
     {
         "_id": "2",
@@ -21,7 +21,7 @@
             50.5,
             30.5
         ],
-        "trackFile": "open"
+        "trackFile": "baby"
     },
     {
         "_id": "3",
@@ -33,7 +33,7 @@
             45.832626782661556,
             1.2689208984375002
         ],
-        "trackFile": "boop"
+        "trackFile": "bah"
     },
     {
         "_id": "4",
@@ -45,6 +45,6 @@
             27.955591004642553,
             -81.43066406250001
         ],
-        "trackFile": "pops"
+        "trackFile": "boop"
     }
 ]

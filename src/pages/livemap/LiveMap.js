@@ -1,19 +1,27 @@
+/* eslint-disable */
 import React, { useState, useEffect } from "react";
-
 import Page from "../../components/Page/Page";
 import Player from "../../components/player/Player";
 import AudioImport from "../../components/audioimport/AudioImport";
 import AudioMap from "../../components/audioMap/AudioMap";
-import quo from "../../assets/audio/quo.mp3";
-import boop from "../../assets/audio/boop.mp3";
-import open from "../../assets/audio/open.mp3";
-import pops from "../../assets/audio/pops.mp3";
+
 import Footer from "../../components/Footer/Footer";
 import Data from "./data.json";
 import Data2 from "./data2.json";
 import CircleUser from "../../components/audioMap/CircleUser";
 import Darulez from "../../components/darulez/Darulez";
 import Rules from "../../components/rules/Rules";
+
+//
+import giorgio from "../../assets/audio/giorgio.mp3";
+import baby from "../../assets/audio/baby.mp3";
+import bah from "../../assets/audio/bah.mp3";
+import child from "../../assets/audio/child.wav";
+import mario from "../../assets/audio/mario.mp3";
+import sonar from "../../assets/audio/sonar.mp3";
+import zombie from "../../assets/audio/zombie.mp3";
+import donald from "../../assets/audio/donald.ogg";
+//
 
 const LiveMap = () => {
   const [isDarkMode, setisDarkMode] = useState(true);
@@ -39,24 +47,64 @@ const LiveMap = () => {
     return () => clearInterval(intervalID);
   }, [isapidata]);
 
+  const playerHnadler = (side) => {
+    if (side === "->") {
+      isapidata.map((o, i) => {
+        if (isaudioClick._id === o._id) {
+          if (isapidata.length - 1 === i) {
+            setisaudioClick(isapidata[0]);
+          } else {
+            setisaudioClick(isapidata[i + 1]);
+          }
+        }
+      });
+    } else {
+      isapidata.map((o, i) => {
+        if (isaudioClick._id === o._id) {
+          if (i === 0) {
+            setisaudioClick(isapidata[isapidata.length - 1]);
+          } else {
+            setisaudioClick(isapidata[i - 1]);
+          }
+        }
+      });
+    }
+  };
+
   useEffect(() => {
-    if (isaudioClick.trackFile === "quo") {
-      setisaudioFile(quo);
+    dataHandlerMusic();
+  }, [isaudioClick]);
+
+  const dataHandlerMusic = () => {
+    if (isaudioClick.trackFile === "giorgio") {
+      setisaudioFile(giorgio);
     }
-    if (isaudioClick.trackFile === "boop") {
-      setisaudioFile(boop);
+    if (isaudioClick.trackFile === "baby") {
+      setisaudioFile(baby);
     }
-    if (isaudioClick.trackFile === "open") {
-      setisaudioFile(open);
+    if (isaudioClick.trackFile === "bah") {
+      setisaudioFile(bah);
     }
-    if (isaudioClick.trackFile === "pops") {
-      setisaudioFile(pops);
+    if (isaudioClick.trackFile === "child") {
+      setisaudioFile(child);
+    }
+    if (isaudioClick.trackFile === "mario") {
+      setisaudioFile(mario);
+    }
+    if (isaudioClick.trackFile === "sonar") {
+      setisaudioFile(sonar);
+    }
+    if (isaudioClick.trackFile === "zombie") {
+      setisaudioFile(zombie);
+    }
+    if (isaudioClick.trackFile === "donald") {
+      setisaudioFile(donald);
     }
 
     setisTitle(isaudioClick.audioTitle);
     setiscity(isaudioClick.city);
     setiscountry(isaudioClick.country);
-  }, [isaudioClick]);
+  };
 
   const handler = () => {
     if (isapidata.length === 0) {
@@ -84,6 +132,8 @@ const LiveMap = () => {
         voicenoteFile={isaudioFile}
         openrulez={isopenrulez}
         setopenrulez={setisopenrulez}
+        //
+        isplayerHnadler={playerHnadler}
       />
       <AudioMap
         cityHandler={setiscity}

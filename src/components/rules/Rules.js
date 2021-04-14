@@ -22,6 +22,7 @@ const Rules = ({ openrulez, setopenrulez }) => {
               color: "#495fef",
               top: "-10px",
               right: "10px",
+              zIndex: "1000",
             }}
           >
             <span style={{ transform: "rotate(45deg)" }}>+</span>
@@ -31,6 +32,7 @@ const Rules = ({ openrulez, setopenrulez }) => {
             style={{ transform: "translateY(-35px)" }}
           >
             <img
+              alt="rules"
               src={Darulez}
               style={{
                 height: "50px",
@@ -55,6 +57,7 @@ const Rules = ({ openrulez, setopenrulez }) => {
 
           <div className="text-left ">
             <img
+              alt="rules"
               src={Square2}
               style={{
                 margin: "10px 0px",
@@ -84,6 +87,7 @@ const Rules = ({ openrulez, setopenrulez }) => {
           </div>
           <div style={{ height: "50px", width: "280px" }}>
             <img
+              alt="rules"
               src={Cone}
               style={{
                 position: "absolute",

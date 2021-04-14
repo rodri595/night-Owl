@@ -13,7 +13,7 @@ const Footer = () => {
           }}
         >
           Made with <span>💖</span> by{" "}
-          <a href="https://erazo.netlify.app/" target="_blank">
+          <a href="https://erazo.netlify.app/" rel="noreferrer" target="_blank">
             Rodri.
           </a>
         </div>

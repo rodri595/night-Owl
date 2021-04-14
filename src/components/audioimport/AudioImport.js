@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Logo from "../../assets/img/logo.png";
 
 const AudioImport = ({ audioimportOpen }) => {
@@ -16,6 +16,7 @@ const AudioImport = ({ audioimportOpen }) => {
           >
             <img
               src={Logo}
+              alt="Logo for Nocturnal Voices"
               style={{
                 height: "50px",
               }}
